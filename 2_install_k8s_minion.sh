@@ -38,26 +38,6 @@ case "$choice" in
 esac
 printf "\n"
 
-kubeadm init --config kubeadm.conf --dry-run
-
-read -p "Create kubernetees master(y/n)?" -n1 choice
-case "$choice" in
-  y|Y ) 
-    kubeadm init --config kubeadm.conf
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
-    sudo chmod o+wr  /home/ubuntu/.kube/config
-    ;;
-esac
-printf "\n"
-
-read -p "Install calico network plugin (y/n)?" -n1 choice
-case "$choice" in
-  y|Y ) kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml;; 
-esac
-printf "\n"
-
 read -p "Install helm (y/n)?" -n1 choice
 case "$choice" in
   y|Y ) 
@@ -70,3 +50,19 @@ case "$choice" in
     ;;
 esac
 printf "\n"
+
+cat << EOF
+########################################################################################################################
+1. You can now join this machines by running "kubeadmin join" command as root:
+Please note that this is just an example, please refer to the output of the "kubeamin init" when cteating the k8s master for the exact comand to use in your k8s cluter!!!
+  kubeadm join 10.12.6.108:6443 --token 43utwe.inl7h8dxn26p26iv --discovery-token-ca-cert-hash sha256:54cc1bcf72218de70c6b98edf4d486f79fb6d921a92ac5b7d10c76dbf96d006f
+
+2. If you would like to get kubectl talk to your k8s master, you need to copy the dministrator kubeconfig file from your master to your workstation like this:
+
+scp root@<master ip>:/etc/kubernetes/admin.conf .
+kubectl --kubeconfig ./admin.conf get nodes
+
+or you can manually copy the content of this file if scp can't be used due to security reason.
+########################################################################################################################
+
+EOF
