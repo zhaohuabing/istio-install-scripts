@@ -62,7 +62,7 @@ Please note that this is just an example, please refer to the output of the "kub
 scp root@<master ip>:/etc/kubernetes/admin.conf .
 kubectl --kubeconfig ./admin.conf get nodes
 
-or you can manually copy the content of this file if scp can't be used due to security reason.
+or you can manually copy the content of this file to ~/.kube/conf if scp can't be used due to security reason.
 ########################################################################################################################
 
 EOF
