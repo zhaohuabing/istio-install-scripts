@@ -6,4 +6,5 @@ rm -rf istio-0.7.1-linux.tar.gz
 kubectl create -f istio-0.7.1/install/kubernetes/helm/helm-service-account.yaml
 helm init --service-account tiller
 helm version
+# use the chart of master branch instead ! 
 helm install istio-0.7.1/install/kubernetes/helm/istio --name istio --namespace istio-system
