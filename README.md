@@ -9,7 +9,7 @@
 * Install Istio using helm
   
   ***Note***: 
-  * Helm chart of 0.7.1 release has some bugs and can't be installed successfully when I try this script, if it isn't fixed yet,please downlod the chart from istio master branch in githhub and use it instead.Download link: https://github.com/istio/istio/tree/master/install/kubernetes/helm/istio
+  * Helm chart of 0.7.1 release has some bugs and can't be installed successfully when I try this script, if it isn't fixed yet,please downlod the chart from istio master branch from githhub and use it instead. Download link: https://github.com/istio/istio/tree/master/install/kubernetes/helm/istio
   * Modify install/kubernetes/helm/istio/values.yaml to 
     * Enable sidecar-injector
     * Install addones sucha as grafana, prometheus, servicegraph and zipkin
