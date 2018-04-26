@@ -1,4 +1,4 @@
-# Scripts for Istio installation on Ubuntu system
+# Scripts to Install Istio on Ubuntu
 
 * Install k8s master node using kubeadmin
 
