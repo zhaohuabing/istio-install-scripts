@@ -1,12 +1,12 @@
-# Scripts to Install Istio on Ubuntu
+# Scripts to Install Kubernetes and Istio on Ubuntu
 
-* Install k8s master node using kubeadmin
+## Install k8s master node using kubeadmin
 
   1_install_k8s_master.sh
-* Install k8s work node using kubeadmin
+## Install k8s work node using kubeadmin
 
   2_install_k8s_minion.sh
-* Install Istio using helm
+## Install Istio using helm
 
   3_install_istio.sh
   
@@ -23,6 +23,6 @@
   
   kubectl label namespace default istio-injection=enabled
 
-References:
+## References:
 * [Installing the Istio Sidecar](https://preliminary.istio.io/docs/setup/kubernetes/sidecar-injection.html)
 * [Installation with Helm](https://preliminary.istio.io/docs/setup/kubernetes/helm-install.html)
