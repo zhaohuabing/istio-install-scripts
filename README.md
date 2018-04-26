@@ -13,14 +13,14 @@
   
   kubectl label namespace default istio-injection=enabled
 * Modify install/kubernetes/helm/istio/values.yaml to 
-  1. Enable sidecar-injector
-  1. Install addones sucha as grafana, prometheus, servicegraph and zipkin
-  1. Add nodeport to access grafana and zipkin from outside of k8s cluster
+  * Enable sidecar-injector
+  * Install addones sucha as grafana, prometheus, servicegraph and zipkin
+  * Add nodeports to access grafana and zipkin from outside of k8s cluster
 
 There is an example values.yaml file in this repo. 
 
 
-Note: helm chart of 0.7.1 release has some bugs and can't be installed successfully when I try this script, please downlod the chart from istio master branch in githhub.
+***Note***: Helm chart of 0.7.1 release has some bugs and can't be installed successfully when I try this script, please downlod the chart from istio master branch in githhub and use it instead.
 
 Istio chart download link: https://github.com/istio/istio/tree/master/install/kubernetes/helm/istio
 
