@@ -53,7 +53,9 @@ case "$choice" in
     mv linux-amd64/helm /usr/local/bin/helm
     rm -rf linux-amd64
     rm -rf helm-v2.9.1-linux-amd64.tar.gz
-    helm init
+
+    kubectl create -f helm_service_account.yaml
+    helm init --service-account helm
     ;;
 esac
 printf "\n"
