@@ -2193,12 +2193,13 @@ metadata:
     release: RELEASE-NAME
     heritage: Tiller
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
       name: http
+      nodePort: 30300
   selector:
     app: grafana
 
@@ -2429,12 +2430,13 @@ metadata:
     release: RELEASE-NAME
     heritage: Tiller
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 8088
       targetPort: 8088
       protocol: TCP
       name: http
+      nodePort: 30088
   selector:
     app: servicegraph
 
@@ -3669,12 +3671,13 @@ items:
       release: RELEASE-NAME
       heritage: Tiller
   spec:
-    type: ClusterIP
+    type: NodePort
     ports:
       - port: 9411
         targetPort: 9411
         protocol: TCP
         name: http
+        nodePort: 30411
     selector:
       app: jaeger
 - apiVersion: v1

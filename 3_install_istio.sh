@@ -1,10 +1,8 @@
 #!/bin/bash
+wget https://github.com/istio/istio/releases/download/0.8.0/istio-0.8.0-linux.tar.gz
+tar -zxvf istio-0.8.0-linux.tar.gz 
+rm -rf istio-0.8.0-linux.tar.gz
+sudo cp istio-0.8.0/bin/istioctl /usr/bin/
+rm -rf istio-0.8.0
 
-wget https://github.com/istio/istio/releases/download/0.7.1/istio-0.7.1-linux.tar.gz
-tar -zxvf istio-0.7.1-linux.tar.gz 
-rm -rf istio-0.7.1-linux.tar.gz
-kubectl create -f istio-0.7.1/install/kubernetes/helm/helm-service-account.yaml
-helm init --service-account tiller
-helm version
-# use the chart of master branch instead ! 
-helm install istio-0.7.1/install/kubernetes/helm/istio --name istio --namespace istio-system
+kubectl apply -f istio.yaml
