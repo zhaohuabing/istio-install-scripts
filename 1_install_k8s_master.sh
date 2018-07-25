@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 echo "************install docker************"
 apt-get update
 apt-get install -y docker.io
@@ -12,19 +10,6 @@ cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
-
-read -p "Install kubelet (y/n)?" -n1 choice
-case "$choice" in
-  y|Y ) apt-get install -y kubelet;;
-esac
-printf "\n"
-
-
-read -p "Install kubelet (y/n)?" -n1 choice
-case "$choice" in
-  y|Y ) apt-get install -y kubelet;;
-esac
-printf "\n"
 
 read -p "Install kubeadm (y/n)?" -n1 choice
 case "$choice" in
@@ -38,6 +23,7 @@ case "$choice" in
 esac
 printf "\n"
 
+echo "*************dry run to test kubeadm.conf************"
 kubeadm init --config kubeadm.conf --dry-run
 
 read -p "Create kubernetees master(y/n)?" -n1 choice
@@ -47,7 +33,7 @@ case "$choice" in
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
-    sudo chmod o+wr  /home/ubuntu/.kube/config
+    sudo chmod o+wr  $HOME/.kube/config
     ;;
 esac
 printf "\n"
@@ -61,12 +47,13 @@ printf "\n"
 read -p "Install helm (y/n)?" -n1 choice
 case "$choice" in
   y|Y ) 
-    wget https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz 
-    tar -zxvf helm-v2.8.2-linux-amd64.tar.gz
+    wget https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz 
+    tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
     chmod o+x linux-amd64/helm
     mv linux-amd64/helm /usr/local/bin/helm
     rm -rf linux-amd64
-    rm -rf helm-v2.8.2-linux-amd64.tar.gz
+    rm -rf helm-v2.9.1-linux-amd64.tar.gz
+    helm init
     ;;
 esac
 printf "\n"
