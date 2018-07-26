@@ -28,7 +28,7 @@ sudo kubeadm init --config kubeadm.conf --dry-run
 
 read -p "Create kubernetees master(y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) 
+  y|Y )
     sudo kubeadm init --config kubeadm.conf
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -40,22 +40,22 @@ printf "\n"
 
 read -p "Install calico network plugin (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml;; 
+  y|Y ) kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml;;
 esac
 printf "\n"
 
 read -p "Install helm (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) 
-    wget https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz 
-    tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
+  y|Y )
+    wget https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz
+    tar -zxvf helm-v2.8.2-linux-amd64.tar.gz
     chmod o+x linux-amd64/helm
     sudo mv linux-amd64/helm /usr/local/bin/helm
     rm -rf linux-amd64
-    rm -rf helm-v2.9.1-linux-amd64.tar.gz
+    rm -rf helm-v2.8.2-linux-amd64.tar.gz
 
     kubectl create -f helm_service_account.yaml
-    helm init --service-account helm
+    helm init --service-account tiller
     ;;
 esac
 printf "\n"
