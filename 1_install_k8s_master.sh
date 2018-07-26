@@ -1,35 +1,35 @@
 #!/bin/bash
 echo "************install docker************"
-apt-get update
-apt-get install -y docker.io
+sudo apt-get update
+sudo apt-get install -y docker.io
 
 echo "*************set up kubernetes apt-get source************"
-apt-get update && apt-get install -y apt-transport-https
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update && sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-apt-get update
+sudo apt-get update
 
 read -p "Install kubeadm (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) apt-get install -y kubeadm;;
+  y|Y ) sudo apt-get install -y kubeadm;;
 esac
 printf "\n"
 
 read -p "Install kubectl (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) apt-get install -y kubectl;;
+  y|Y ) sudo apt-get install -y kubectl;;
 esac
 printf "\n"
 
 echo "*************dry run to test kubeadm.conf************"
-kubeadm init --config kubeadm.conf --dry-run
+sudo kubeadm init --config kubeadm.conf --dry-run
 
 read -p "Create kubernetees master(y/n)?" -n1 choice
 case "$choice" in
   y|Y ) 
-    kubeadm init --config kubeadm.conf
+    sudo kubeadm init --config kubeadm.conf
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
