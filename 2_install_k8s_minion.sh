@@ -13,19 +13,19 @@ sudo apt-get update
 
 read -p "Install kubelet (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) sudo apt-get install -y kubelet;;
+  y|Y ) sudo apt-get install -y kubelet=1.11.1-00;;
 esac
 printf "\n"
 
 read -p "Install kubeadm (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) sudo apt-get install -y kubeadm;;
+  y|Y ) sudo apt-get install -y kubeadm=1.11.1-00;;
 esac
 printf "\n"
 
 read -p "Install kubectl (y/n)?" -n1 choice
 case "$choice" in
-  y|Y ) sudo apt-get install -y kubectl;;
+  y|Y ) sudo apt-get install -y kubectl=1.11.1-00;;
 esac
 printf "\n"
 
